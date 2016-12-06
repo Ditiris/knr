@@ -2,5 +2,12 @@
 
 int main()
 {
-	printf("%d\n", getchar() != EOF);	
+	int c;
+	char d;
+	while ((c = getchar()) != EOF) {
+		d = (c == EOF);
+		printf("%d", d);	
+	}
+	d = (c == EOF);
+	printf("%d\n", d);
 }
