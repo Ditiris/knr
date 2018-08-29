@@ -8,7 +8,7 @@
 
 
 int my_getline(char line[], int maxline);
-void copy(char to[], char from []);
+int is_whitespace(char line[], int len);
 
 /* print lines without whitespace */
 int main()
