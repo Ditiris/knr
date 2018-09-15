@@ -1,0 +1,10 @@
+zero spaces
+ one space
+  two spaces
+   three spaces
+	four spaces
+	 five spaces
+	  six spaces
+	   seven spaces
+		eight spaces
+zero spaces
