@@ -1,0 +1,10 @@
+          tab space tab space
+                tab tab tab tab
+  space space
+          space tab space tab
+    tab
+no tabs or spaces
+ space
+tabs at end		
+spaces at end  
+no tabs or spaces

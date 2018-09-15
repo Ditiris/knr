@@ -1,9 +1,12 @@
 #include <stdio.h>
 #define MAXLINE 1000 	/* maximum input line size */
+#define HORIZONTAL_TAB 0x09
+#define SPACE          0x20
+#define SPACES_PER_TAB 4
 
 
 int my_getline(char line[], int maxline);
-void my_reverse(char line[], int len);
+void detab(char line[], int len, int spaces);
 
 /* print lines without whitespace */
 int main()
@@ -12,8 +15,7 @@ int main()
 	char line[MAXLINE];		/* current input line */
 
 	while ((len = my_getline(line, MAXLINE)) > 0) {
-		my_reverse(line, len);
-		printf("%s", line);
+		detab(line, len, SPACES_PER_TAB);
 	}
 	return 0;
 }
@@ -34,16 +36,24 @@ int my_getline(char s[], int lim)
 	return i;
 }
 
-/* my_reverse: reverses the characters of line in space */
-void my_reverse(char line[], int len)
+/* detab: Replace tabs at beginning of line with spaces */
+void detab(char line[], int len, int spaces)
 {
-	int myFrontIndex;
-	int myBackIndex = len-1;
-	for (myFrontIndex = 0; myFrontIndex < len/2; myFrontIndex++)
-	{
-		line[myFrontIndex] ^= line[myBackIndex];
-		line[myBackIndex] ^= line[myFrontIndex];
-		line[myFrontIndex] ^= line[myBackIndex];
-		myBackIndex--;
+	int i;
+	int myCharIndex = 0;
+	int myNumSpaces = 0;
+	while (myCharIndex < len && (line[myCharIndex] == HORIZONTAL_TAB || line[myCharIndex] == SPACE)) {
+		if (line[myCharIndex] == HORIZONTAL_TAB) {
+			myNumSpaces += spaces;
+		} else if (line[myCharIndex] == SPACE) {
+			myNumSpaces++;
+		} else {
+			break;
+		}
+		myCharIndex++;
 	}
+	for (i=0; i < myNumSpaces; i++) {
+		printf(" ");
+	}
+	printf("%s", line+myCharIndex);
 }
